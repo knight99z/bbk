@@ -1,0 +1,88 @@
+package zuoye3;
+import java.util.Scanner;
+import javax.swing.*;
+import java.util.*;
+import java.text.*;
+import java.awt.Graphics;
+import java.awt.TextField;
+import java.io.*;
+public class rjgc3 {
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		String get;
+		get=in.nextLine();
+		String[] str=get.split(" ");
+if(str.length<3) {
+	File f=new File("E:\\zuoye2\\"+str[0]);
+	BufferedReader r=new BufferedReader(new FileReader(f));
+	String[] line =new String[200];
+	int n=0;
+	while ((line[n]=r.readLine()) != null ) {
+			n++;
+		}
+	String[] result =new String[200];
+	int loc =line[0].indexOf('省')+1;
+	result[0]=line[0].substring(0, loc);
+	int num=0;
+	int num1=1;
+	for(int i=0;line[i]!=null;i++) {
+		int loc1=line[i].indexOf('省')+1;
+		if(result[num].equals(line[i].substring(0, loc1))) {
+			if(line[i].indexOf('区') ==-1	) {
+			result[num1]=line[i].substring(loc1+1);
+			num1++;
+			}
+		}
+		else {
+			result[i+1]=line[i].substring(0, loc1);
+			num1++;
+			result[num1]=line[i].substring(loc1+1);
+			num=i+1;
+			num1++;
+		}
+	}
+	FileOutputStream fout=new FileOutputStream(new File("E:\\zuoye2\\"+str[1]));
+	PrintStream p=new PrintStream(fout);
+	for(int i=0;i<n;i++) {
+		if(result[i]!=null) {
+			p.println(result[i]);
+			System.out.println(result[i]);
+		}
+	}
+  }	
+else {
+	File f=new File("E:\\ zuoye2\\"+str[0]);
+	BufferedReader r=new BufferedReader(new FileReader(f));
+	String[] line =new String[200];
+	int n=0;
+	while ((line[n]=r.readLine()) != null ) {
+			n++;
+		}
+	String[] result =new String[200];
+	int loc =line[0].indexOf('省')+1;
+	result[0]=str[2];
+	int num=0;
+	int num1=1;
+	for(int i=0;line[i]!=null;i++) {
+		int loc1=line[i].indexOf('省')+1;
+		if(line[i].substring(0, loc1).equals(str[2])) {
+			if(line[i].indexOf('区') ==-1	) {
+			result[num1]=line[i].substring(loc1+1);
+			num1++;
+			}
+		}
+	}
+	FileOutputStream fout=new FileOutputStream(new File("E:\\zuoye2\\"+str[1]));
+	PrintStream p=new PrintStream(fout);
+	for(int i=0;i<n;i++) {
+		if(result[i]!=null) {
+			p.println(result[i]);
+			System.out.println(result[i]);
+		}
+	}
+}
+
+	}
+
+}
